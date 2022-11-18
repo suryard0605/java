@@ -1,0 +1,266 @@
+#STUDENT INFO SYSTEM
+#HTML CODE
+
+<html>
+   
+   <head>
+     
+   </head>
+   
+   <body>
+    <h2>Student Information System</h2>
+     
+     
+      <form method = "post" action = "dbregister.php">
+         Name:<input type = "text" name = "name"><br><br>
+         Reg.No:	<input type = "text" name = "regno"><br><br>
+	 E-mail:	<input type = "text" name = "email"><br><br>
+	 CGPA:		<input type = "text" name = "cgpa"><br><br>		
+         Mobile No.:	<input type = "text" name = "mobile"><br><br>
+	 Gender:<input type = "radio" name = "gender" value = "female">Female
+                  <input type = "radio" name = "gender" value = "male">Male <br><br>
+
+
+         <input type = "submit" name = "submit" value = "Submit"> 
+     </form>
+   </body>
+   </html>
+
+
+#PHP CODE
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "student";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
+$sql = "CREATE TABLE userinfo (
+name VARCHAR(30) NOT NULL,
+regno VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+cgpa int(5),
+mobile int(10), 
+gender VARCHAR(10)
+)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Table userinfo created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+
+/*
+
+//get the data from html file
+$name=$_POST["name"];
+$regno=$_POST["regno"];
+$email=$_POST["email"];
+$cgpa=$_POST["cgpa"];
+$mobile=$_POST["mobile"];
+$gender=$_POST["gender"];
+
+
+//insert data into database
+$sql = "INSERT INTO userinfo (name, regno, email,cgpa,mobile,gender)
+VALUES ('$name', '$regno', '$email','$cgpa','$mobile','$gender')";
+echo "inserted";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+*/
+$conn->close();
+?>
+
+
+#INVENTORY MANAGEMENT
+#HTML CODE
+
+<html>
+   
+   <head>
+     
+   </head>
+   
+   <body>
+    <h2>Inventory Management System</h2>
+     
+     
+      <form method = "post" action = "db_inventory.php">
+         Product Id:<input type = "text" name = "pid"><br><br>
+         Product Name:	<input type = "text" name = "pname"><br><br>
+	 Product in stock:	<input type = "text" name = "pstock"><br><br>
+	 Product Requirement(#): <input type = "text" name = "preq"><br><br>		
+         Order placed(Y/N):<input type = "radio" name = "porder" value = "Yes">Yes
+                  <input type = "radio" name = "porder" value = "No">No <br><br>
+	 
+         <input type = "submit" name = "submit" value = "Submit"> 
+     </form>
+   </body>
+   </html>
+
+
+#PHP CODE
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "inventory";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
+
+$sql = "CREATE TABLE inventory (
+pid VARCHAR(30) NOT NULL,
+pname VARCHAR(30) NOT NULL,
+pstock INT(10),
+preq INT(10),
+porder VARCHAR(10)
+)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Table inventory created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+
+
+
+//get the data from html file
+$pid=$_POST["pid"];
+$pname=$_POST["pname"];
+$pstock=$_POST["pstock"];
+$preq=$_POST["preq"];
+$porder=$_POST["porder"];
+
+
+
+
+//insert data into database
+$sql = "INSERT INTO inventory(pid, pname, pstock,preq,porder)
+VALUES ('$pid', '$pname', '$pstock','$preq','$porder')";
+echo "'<br>'Data inserted sucessfully '<br>'";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+
+$conn->close();
+?>
+
+
+#PAYROLL
+#HTML CODE
+
+<html>
+   
+   <head>
+     
+   </head>
+   
+   <body>
+    <h2>Payroll Information System</h2>
+     
+     
+      <form method = "post" action = "db_payroll.php">
+         Name of the employee:<input type = "text" name = "name"><br><br>
+         Emp.id:	<input type = "text" name = "eid"><br><br>
+	 Mobile No.:	<input type = "text" name = "mobile"><br><br>
+	 Account Number.: <input type = "text" name = "ano"><br><br>		
+         Gender:<input type = "radio" name = "gender" value = "female">Female
+                  <input type = "radio" name = "gender" value = "male">Male <br><br>
+	 Basic Salary: <input type = "text" name = "bs"><br><br>
+
+         <input type = "submit" name = "submit" value = "Submit"> 
+     </form>
+   </body>
+   </html>
+
+
+#PHP CODE
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "payroll";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+
+
+$sql = "CREATE TABLE payroll (
+name VARCHAR(30) NOT NULL,
+eid VARCHAR(30) NOT NULL,
+mobile INT(10),
+acno INT(10),
+gender VARCHAR(10),
+bs float(8,2),
+gs float(8,2)
+)";
+
+if ($conn->query($sql) === TRUE) {
+  echo "Table payroll created successfully";
+} else {
+  echo "Error creating table: " . $conn->error;
+}
+
+
+
+
+//get the data from html file
+$name=$_POST["name"];
+$eid=$_POST["eid"];
+$mobile=$_POST["mobile"];
+$accno=$_POST["ano"];
+$gender=$_POST["gender"];
+$bs=$_POST["bs"];
+
+$hra=$bs*10/100;
+$da=$bs*40/100;
+$gs=$bs+$hra+$da;
+
+
+
+//insert data into database
+$sql = "INSERT INTO payroll(name, eid, mobile,acno,gender,bs,gs)
+VALUES ('$name', '$eid', '$mobile','$accno','$gender','$bs','$gs')";
+echo "'<br>'Data inserted sucessfully '<br>'";
+
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+
+$conn->close();
+?>
